@@ -9,15 +9,15 @@ interface HeaderProps {
 }
 
 export function Header({ tasksCounter }: HeaderProps) {
-  // const tasksCounterText = TODO render 'tarefa' if tasksCounter equals 1, otherwise render 'tarefas'
-  
+  const tasksCounterText = tasksCounter === 1 ? 'tarefa' : 'tarefas'
+
   return (
     <View style={styles.container}>
       <Image source={logoImg} />
       
       <View style={styles.tasks}>
         <Text style={styles.tasksCounter}>Você tem </Text>
-        {/* <Text style={styles.tasksCounterBold}>{tasksCounter} {tasksCounterText}</Text> */}
+        <Text style={styles.tasksCounterBold}>{tasksCounter} {tasksCounterText}</Text>
       </View>
     </View>
   )
@@ -48,3 +48,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Bold',
   }
 });
+
+// getStatusBarHeight([safe])
+// Parameters
+// safe - whether you want for get safe area height or not
+
+// returns - the height of the status bar: 44 for safe iPhoneX, 30 for unsafe iPhoneX, 20 for other iOS devices and StatusBar.currentHeight for Android.

@@ -8,16 +8,32 @@ import { TodoInput } from '../components/TodoInput';
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function handleAddTask(newTaskTitle: string) {
-    //TODO - add new task
+  function handleAddTask(newTaskTitle: string) {    
+    const newTask = {
+      id: new Date().getTime(),
+      title: newTaskTitle,
+      done: false,
+    }
+
+    setTasks((oldState) => [...oldState, newTask ])
   }
 
   function handleToggleTaskDone(id: number) {
-    //TODO - toggle task done if exists
+    // example of "deep clone", to avoid shallow copy
+    const updatedTasks = tasks.map(task => ({...task}))
+
+    const taskDone = updatedTasks.find(task => task.id === id)
+
+    if (!taskDone) return
+
+    taskDone.done = !taskDone.done
+    setTasks(updatedTasks)
   }
 
   function handleRemoveTask(id: number) {
-    //TODO - remove task from state
+    setTasks(oldState => oldState.filter(
+      skill => skill.id !== id
+    ))
   }
 
   return (
